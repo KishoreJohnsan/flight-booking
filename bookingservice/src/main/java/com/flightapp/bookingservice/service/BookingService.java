@@ -12,6 +12,8 @@ public interface BookingService {
     Booking getBookingById(Long bookingId) throws BookingNotFoundException;
     boolean saveBooking(Booking booking) throws BookingAlreadyExistsException;
     boolean updateBooking(Booking booking) throws BookingNotFoundException;
+
+    boolean cancelBooking(Long bookingId) throws BookingNotFoundException;
     boolean deleteBooking(Long bookingId) throws BookingNotFoundException;
 
 

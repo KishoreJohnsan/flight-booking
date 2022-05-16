@@ -47,17 +47,17 @@ public class DiscountController {
     }
 
     @ExceptionHandler(DiscountNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleDiscountNotFound(){
-        return new ResponseEntity<>(new ErrorResponse("Discount not found"), HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> handleDiscountNotFound(){
+        return new ResponseEntity<>("Discount not found", HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(DiscountAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleDiscountAlreadyFound(){
-        return new ResponseEntity<>(new ErrorResponse("Discount already present"), HttpStatus.CONFLICT);
+    public ResponseEntity<?> handleDiscountAlreadyFound(){
+        return new ResponseEntity<>("Discount already present", HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException(){
-        return  new ResponseEntity<>(new ErrorResponse("Internal Error"), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<?> handleException(){
+        return  new ResponseEntity<>("Internal Error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

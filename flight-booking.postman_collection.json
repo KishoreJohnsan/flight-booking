@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "80f0a0b4-4d5d-4fc9-af11-d6f31a835199",
+		"_postman_id": "0da392d9-dd9e-4873-ae7e-5b2235fc1ff8",
 		"name": "flight-booking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -491,6 +491,31 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Cancel Booking",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/flight/bookings/booking/cancel/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"bookings",
+								"booking",
+								"cancel",
+								"23"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -746,7 +771,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MjUyNjY5NiwiaWF0IjoxNjUyNTIzMDk2fQ.bwLnGsyXZeDJKIvx00nySHOk3D4yrAxoQUT6cOMkzqk2N_8K-rg_VEraG_2zx_x9OifxAdZqENnyoJKwruqMqw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MjcwNDg4MywiaWF0IjoxNjUyNzAxMjgzfQ.1RjB2pbPN2zxfs_pMgByo8fIO6XJJBSsP0JdP3ohkIFbd1fRAGD2IBQwYEuEcf4vbPfOIJxB1rPH7bj19hL2-A",
 									"type": "string"
 								}
 							]
@@ -887,7 +912,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"user\"\r\n}",
+							"raw": "{\r\n    \"username\":\"user2\",\r\n    \"password\":\"user2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1021,7 +1046,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUyMzg2ODQ3LCJpYXQiOjE2NTIzODMyNDd9.3TJVq5fuDv1a93oJAgxe2orK1bigbSVtObZ1dVGC4BrQPH18U7wOrio1P6MM68Lq-z-fZ0rDc6PpOMUlKHoDQQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUyNzA0MzIyLCJpYXQiOjE2NTI3MDA3MjJ9.bIcm009FPd1M2JlAa6LHCQw0SNiM75UzGfmVVUztGXVoYL2hARixGhzuRvJbWOZWAU2DFGZu-ExCW8ySZ5wtNQ",
 									"type": "string"
 								}
 							]
@@ -1029,7 +1054,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/service/user/bookingById/2",
+							"raw": "http://localhost:3000/api/v1/service/user/bookingById/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1041,7 +1066,114 @@
 								"service",
 								"user",
 								"bookingById",
-								"2"
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUyNzA0MzIyLCJpYXQiOjE2NTI3MDA3MjJ9.bIcm009FPd1M2JlAa6LHCQw0SNiM75UzGfmVVUztGXVoYL2hARixGhzuRvJbWOZWAU2DFGZu-ExCW8ySZ5wtNQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/service/user/cancelBooking/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								"cancelBooking",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user2\",\r\n    \"password\":\"user2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/service/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMiIsImV4cCI6MTY1MjcxMjQwOSwiaWF0IjoxNjUyNzA4ODA5fQ.IPQcftKUEGJLG3KTqwEdXm_r3xgxQERcg4CBANjuyrJAXjart_gq7_UsB0eebb835M0nJFYrrJCfx3Q2eLyYEg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"source\":\"Chennai\",\r\n     \"destination\":\"Kolkata\",\r\n     \"airline\":\"Air India\",\r\n     \"date\":\"15052022\",\r\n     \"time\":\"1000\",\r\n     \"fare\":\"6300\",\r\n     \"user\":\"user2\",     \r\n     \"seats\":\"2\",\r\n     \"mealPreference\":\"Veg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/service/user/booking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								"booking"
 							]
 						}
 					},

@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Duration;
@@ -44,17 +45,21 @@ public class AdminController {
     }
 
     @GetMapping(value = "/airline")
-    public ResponseEntity<List<Airline>> getAirlines(){
+    public ResponseEntity<?> getAirlines(){
 
         String url = baseUrlAirline + "/airline";
         HttpEntity<?> httpEntity = new HttpEntity<>(null,null);
-        ParameterizedTypeReference<List<Airline>> type = new ParameterizedTypeReference<>() {};
-        return restTemplate.exchange(url, HttpMethod.GET, httpEntity, type );
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {};
+        try{
+            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, type );
+        }catch (HttpClientErrorException.NotFound e){
+            return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
+        }
 
     }
 
     @GetMapping(value = "/airline/{airline}")
-    public ResponseEntity<Airline> getAirlineByName(@PathVariable String airline) throws Exception {
+    public ResponseEntity<?> getAirlineByName(@PathVariable String airline) throws Exception {
 
         String url = baseUrlAirline.concat("/airline/").concat(airline);
         HttpEntity<?> httpEntity = new HttpEntity<>(null,null);
@@ -71,6 +76,8 @@ public class AdminController {
             throw new Exception("Some Internal Error");
         }
     }
+
+
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException() {

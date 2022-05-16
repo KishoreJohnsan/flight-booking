@@ -1,6 +1,5 @@
 package com.flightapp.flightscheduleservice.controller;
 
-import com.flightapp.flightscheduleservice.entity.ErrorResponse;
 import com.flightapp.flightscheduleservice.entity.FlightSchedule;
 import com.flightapp.flightscheduleservice.exception.FlightScheduleAlreadyExistsException;
 import com.flightapp.flightscheduleservice.exception.FlightScheduleNotFoundException;
@@ -51,18 +50,18 @@ public class FlightScheduleController {
     }
 
     @ExceptionHandler(FlightScheduleNotFoundException.class)
-    public ResponseEntity<ErrorResponse>handleFlightScheduleNotFound(){
-        return new ResponseEntity<>(new ErrorResponse("FlightSchedule not found"), HttpStatus.NOT_FOUND);
+    public ResponseEntity<?>handleFlightScheduleNotFound(){
+        return new ResponseEntity<>("FlightSchedule not found", HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(FlightScheduleAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleFlightScheduleAlreadyFound(){
-        return new ResponseEntity<>(new ErrorResponse("FlightSchedule already present"), HttpStatus.CONFLICT);
+    public ResponseEntity<?> handleFlightScheduleAlreadyFound(){
+        return new ResponseEntity<>("FlightSchedule already present", HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)
-    public  ResponseEntity<ErrorResponse> handleException(){
-        return new ResponseEntity<>(new ErrorResponse("Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
+    public  ResponseEntity<?> handleException(){
+        return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

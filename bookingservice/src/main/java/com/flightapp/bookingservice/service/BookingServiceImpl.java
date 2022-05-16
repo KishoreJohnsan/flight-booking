@@ -33,7 +33,6 @@ public class BookingServiceImpl implements BookingService{
             throw new BookingNotFoundException();
     }
 
-    //TODO
     @Override
     public boolean saveBooking(Booking booking) throws BookingAlreadyExistsException {
         Optional<Booking> bookingOpt = repo.findByUserAndSourceAndDestinationAndDateAndTimeAndStatusEqualsIgnoreCase(
@@ -41,8 +40,10 @@ public class BookingServiceImpl implements BookingService{
         );
         if(bookingOpt.isPresent())
             throw  new BookingAlreadyExistsException();
-        else
+        else {
+            booking.setStatus("BOOKED");
             repo.save(booking);
+        }
 
         return true;
     }
@@ -53,6 +54,19 @@ public class BookingServiceImpl implements BookingService{
         if(bookingOpt.isPresent())
             repo.save(booking);
         else
+            throw new BookingNotFoundException();
+
+        return true;
+    }
+
+    @Override
+    public boolean cancelBooking(Long bookingId) throws BookingNotFoundException {
+        Optional<Booking> bookingOpt = repo.findById(bookingId);
+        if(bookingOpt.isPresent()){
+            Booking booking = bookingOpt.get();
+            booking.setStatus("CANCELLED");
+            repo.save(booking);
+        } else
             throw new BookingNotFoundException();
 
         return true;

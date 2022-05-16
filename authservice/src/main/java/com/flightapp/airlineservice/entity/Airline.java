@@ -2,10 +2,12 @@ package com.flightapp.airlineservice.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 
 @Getter
 @Setter
+@ToString
 public class Airline {
 
     private Long airlineId;
@@ -13,13 +15,4 @@ public class Airline {
     private String contact;
     private String address;
 
-    @Override
-    public String toString() {
-        return "Airline{" +
-                "airlineId=" + airlineId +
-                ", airlineName='" + airlineName + '\'' +
-                ", contact='" + contact + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
 }

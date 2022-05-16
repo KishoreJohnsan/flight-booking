@@ -61,18 +61,18 @@ public class AirlineController {
     }
 
     @ExceptionHandler(AirlineNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleAirlineNotFound(){
-        return new ResponseEntity<>(new ErrorResponse("Airline not found"), HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> handleAirlineNotFound(){
+        return new ResponseEntity<>("Airline not found", HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(AirlineAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleAirlineAlreadyFound(){
-        return new ResponseEntity<>(new ErrorResponse("Airline already present"), HttpStatus.CONFLICT);
+    public ResponseEntity<?> handleAirlineAlreadyExists(){
+        return new ResponseEntity<>("Airline already present", HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException(){
-        return new ResponseEntity<>(new ErrorResponse("Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<?> handleException(){
+        return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

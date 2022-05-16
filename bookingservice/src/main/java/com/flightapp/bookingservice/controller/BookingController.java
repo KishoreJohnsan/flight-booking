@@ -1,14 +1,13 @@
 package com.flightapp.bookingservice.controller;
 
 import com.flightapp.bookingservice.entity.Booking;
-import com.flightapp.bookingservice.entity.ErrorResponse;
 import com.flightapp.bookingservice.exception.BookingAlreadyExistsException;
 import com.flightapp.bookingservice.exception.BookingNotFoundException;
+import com.flightapp.bookingservice.repo.BookingRepo;
 import com.flightapp.bookingservice.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +18,9 @@ public class BookingController {
 
     @Autowired
     private BookingService bookingService;
+
+    @Autowired
+    private BookingRepo repo;
 
 
     @GetMapping(value = "/booking/user/{user}")
@@ -31,15 +33,19 @@ public class BookingController {
         return new ResponseEntity<>(bookingService.getBookingById(bookingId), HttpStatus.OK);
     }
 
-
     @PostMapping(value = "/booking")
-    public ResponseEntity<Boolean> saveAirline(@RequestBody Booking booking) throws BookingAlreadyExistsException {
+    public ResponseEntity<Boolean> saveBooking(@RequestBody Booking booking) throws BookingAlreadyExistsException {
         return new ResponseEntity<>(bookingService.saveBooking(booking), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/booking")
-    public ResponseEntity<Boolean> updateAirline(@RequestBody Booking booking) throws BookingNotFoundException {
+    public ResponseEntity<Boolean> updateBooking(@RequestBody Booking booking) throws BookingNotFoundException {
         return new ResponseEntity<>(bookingService.updateBooking(booking), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/booking/cancel/{bookingId}")
+    public ResponseEntity<Boolean> cancelBooking(@PathVariable Long bookingId) throws BookingNotFoundException {
+        return new ResponseEntity<>(bookingService.cancelBooking(bookingId), HttpStatus.CREATED);
 
     }
 
@@ -49,17 +55,17 @@ public class BookingController {
     }
 
     @ExceptionHandler(BookingNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleBookingNotFound(){
-        return new ResponseEntity<>(new ErrorResponse("Booking not found"), HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> handleBookingNotFound(){
+        return new ResponseEntity<>("Booking Not Found", HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(BookingAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleBookingAlreadyFound(){
-        return new ResponseEntity<>(new ErrorResponse("Booking already present"), HttpStatus.CONFLICT);
+    public ResponseEntity<?> handleBookingAlreadyFound(){
+        return new ResponseEntity<>("Booking already present", HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException() {
-        return new ResponseEntity<>(new ErrorResponse("Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<?> handleException() {
+        return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
