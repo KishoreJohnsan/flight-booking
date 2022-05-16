@@ -17,7 +17,7 @@ public class BookingServiceImpl implements BookingService{
     private BookingRepo repo;
     @Override
     public List<Booking> getBookingByUser(String user) throws BookingNotFoundException {
-        List<Booking> bookingList = repo.findAll();
+        List<Booking> bookingList = repo.findByUser(user);
         if(bookingList.isEmpty())
             throw new BookingNotFoundException();
         else

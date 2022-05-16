@@ -2,6 +2,7 @@ package com.flightapp.authservice.controller;
 
 import com.flightapp.airlineservice.entity.Airline;
 
+import com.flightapp.airlineservice.entity.FlightSchedule;
 import com.flightapp.authservice.entity.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
@@ -39,6 +40,9 @@ public class AdminController {
     @Value("${airline.service.url}")
     private String baseUrlAirline;
 
+    @Value("${flightschedule.service.url}")
+    private String baseUrlSchedule;
+
     @GetMapping(value = "/")
     public String helloAdmin() {
         return "Hello Admin";
@@ -58,10 +62,10 @@ public class AdminController {
 
     }
 
-    @GetMapping(value = "/airline/{airline}")
-    public ResponseEntity<?> getAirlineByName(@PathVariable String airline) throws Exception {
+    @GetMapping(value = "/airline/{airlineName}")
+    public ResponseEntity<?> getAirlineByName(@PathVariable String airlineName) throws Exception {
 
-        String url = baseUrlAirline.concat("/airline/").concat(airline);
+        String url = baseUrlAirline.concat("/airline/").concat(airlineName);
         HttpEntity<?> httpEntity = new HttpEntity<>(null,null);
         ParameterizedTypeReference<String> type = new ParameterizedTypeReference<>() {};
         restTemplate.exchange(url, HttpMethod.GET, httpEntity, type);
@@ -73,10 +77,37 @@ public class AdminController {
             ConsumerRecords<String, Airline> records = consumer.poll(Duration.ofSeconds(5));
             return new ResponseEntity<>(records.iterator().next().value(), HttpStatus.OK);
         }catch(Exception e){
-            throw new Exception("Some Internal Error");
+            throw new Exception("Internal Server Error");
         }
     }
 
+    @GetMapping(value = "/schedule")
+    public ResponseEntity<?> getFlightSchedule(){
+
+        String url = baseUrlSchedule + "/schedule";
+        HttpEntity<?> httpEntity = new HttpEntity<>(null,null);
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {};
+        try{
+            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, type );
+        }catch (HttpClientErrorException.NotFound e){
+            return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+    @PostMapping(value = "/schedule")
+    public ResponseEntity<?> saveFlightSchedule(@RequestBody FlightSchedule schedule){
+
+        String url = baseUrlSchedule + "/schedule";
+        HttpEntity<?> httpEntity = new HttpEntity<>(schedule,null);
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {};
+        try{
+            return restTemplate.exchange(url, HttpMethod.POST, httpEntity, type );
+        }catch (HttpClientErrorException.NotFound e){
+            return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.CONFLICT);
+        }
+
+    }
 
 
     @ExceptionHandler(Exception.class)

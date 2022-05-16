@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0da392d9-dd9e-4873-ae7e-5b2235fc1ff8",
+		"_postman_id": "d3fccee9-b452-460d-a6c4-adbdb64db6f3",
 		"name": "flight-booking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -791,6 +791,81 @@
 								"service",
 								"admin",
 								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MjczNDM5MywiaWF0IjoxNjUyNzMwNzkzfQ.4QoqW6jeasDnaXtcUbk8qvuRWsLBoA4bqjEC_J-NO6eDczHBpYqGfYKb2CUYWgrpPpnjr3ZMok0cQQ6u6oRfbQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\" : \"1221\",\r\n    \"airline\" : \"Vistara\",\r\n    \"source\" : \"Chennai\",\r\n    \"destination\" : \"Singapore\",\r\n    \"flightType\" : \"B787\",\r\n    \"time\" : \"2200\",\r\n    \"date\" : \"19052022\",\r\n    \"fare\" : 15000\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/service/admin/schedule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MjczNDM5MywiaWF0IjoxNjUyNzMwNzkzfQ.4QoqW6jeasDnaXtcUbk8qvuRWsLBoA4bqjEC_J-NO6eDczHBpYqGfYKb2CUYWgrpPpnjr3ZMok0cQQ6u6oRfbQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/service/admin/schedule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"schedule"
 							]
 						}
 					},

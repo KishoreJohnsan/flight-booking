@@ -116,6 +116,23 @@ public class UserController {
         }
     }
 
+    //TODO : Needs to implemented later completely
+    /*@GetMapping(value = "/downloadTicket/{bookingId}")
+    public ResponseEntity<?> downloadTicket(@PathVariable String bookingId){
+
+        String url = baseUrlBooking.concat("/download/").concat(bookingId);
+        HttpEntity<?> httpEntity = new HttpEntity<>(null, null);
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {
+        };
+
+        try{
+            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, type);
+        }catch (HttpClientErrorException e){
+            return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
+        }
+
+    }*/
+
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException() {
