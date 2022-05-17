@@ -103,7 +103,7 @@ public class AdminController {
         ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {};
         try{
             return restTemplate.exchange(url, HttpMethod.POST, httpEntity, type );
-        }catch (HttpClientErrorException.NotFound e){
+        }catch (HttpClientErrorException.Conflict e){
             return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.CONFLICT);
         }
 
