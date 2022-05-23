@@ -8,7 +8,11 @@ import com.flightapp.authservice.security.JwtTokenProvider;
 import com.flightapp.authservice.service.AuthService;
 import com.flightapp.authservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +22,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.Map;
@@ -38,6 +44,12 @@ public class AuthController {
     @Autowired
     private Environment env;
 
+    @Value("${flightschedule.service.url}")
+    private String baseUrlSchedule;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
     @PostMapping(value = "/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserDet request) throws Exception {
 
@@ -57,6 +69,20 @@ public class AuthController {
     @PostMapping(value = "/register")
     public ResponseEntity<?> registerUser(@RequestBody UserDet req) throws UserAlreadyExistsException {
         return new ResponseEntity<>(authService.registerUser(req), HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/scheduleByStn/{src}/{dest}")
+    public ResponseEntity<?> getFlightScheduleByStation(@PathVariable String src, @PathVariable String dest){
+
+        String url = baseUrlSchedule.concat("/scheduleByStn/").concat(src).concat("/").concat(dest);
+        HttpEntity<?> httpEntity = new HttpEntity<>(null,null);
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {};
+        try{
+            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, type );
+        }catch (HttpClientErrorException.NotFound e){
+            return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)

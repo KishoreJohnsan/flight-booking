@@ -15,6 +15,7 @@ public interface BookingService {
 
     boolean cancelBooking(Long bookingId) throws BookingNotFoundException;
     boolean deleteBooking(Long bookingId) throws BookingNotFoundException;
+    boolean generateTicket(Long bookingId) throws BookingNotFoundException;
 
 
 }

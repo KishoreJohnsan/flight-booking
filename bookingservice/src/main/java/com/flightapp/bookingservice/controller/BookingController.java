@@ -54,6 +54,11 @@ public class BookingController {
         return new ResponseEntity<>(bookingService.deleteBooking(booking.getBookingId()), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/download/{bookingId}")
+    public ResponseEntity<Boolean> downloadTicket(@PathVariable Long bookingId) throws BookingNotFoundException {
+        return new ResponseEntity<>(bookingService.generateTicket(bookingId), HttpStatus.OK);
+    }
+
     @ExceptionHandler(BookingNotFoundException.class)
     public ResponseEntity<?> handleBookingNotFound(){
         return new ResponseEntity<>("Booking Not Found", HttpStatus.NOT_FOUND);

@@ -16,4 +16,6 @@ public class Booking {
     private Double fare;
     private String user;
     private String status;
+    private Integer seats;
+    private String mealPreference;
 }

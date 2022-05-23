@@ -14,5 +14,6 @@ public class Airline {
     private String airlineName;
     private String contact;
     private String address;
+    private String isActive;
 
 }

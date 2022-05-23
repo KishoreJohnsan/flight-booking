@@ -82,4 +82,16 @@ public class BookingServiceImpl implements BookingService{
 
         return true;
     }
+
+    @Override
+    public boolean generateTicket(Long bookingId) throws BookingNotFoundException {
+        Optional<Booking> bookingOpt = repo.findById(bookingId);
+        if(bookingOpt.isPresent()) {
+            Booking booking =  bookingOpt.get();
+            //generateTicketPDF(booking);
+            return true;
+        }
+        else
+            throw new BookingNotFoundException();
+    }
 }

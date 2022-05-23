@@ -56,6 +56,20 @@ public class UserController {
 
     }
 
+    @GetMapping(value = "/scheduleById/{scheduleId}")
+    public ResponseEntity<?> getFlightScheduleById(@PathVariable String scheduleId){
+
+        String url = baseUrlSchedule.concat("/scheduleById/").concat(scheduleId);
+        HttpEntity<?> httpEntity = new HttpEntity<>(null,null);
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {};
+        try{
+            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, type );
+        }catch (HttpClientErrorException.NotFound e){
+            return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
+        }
+
+    }
+
     @GetMapping(value = "/bookingByUser/{user}")
     public ResponseEntity<?> getBookingsByUser(@PathVariable String user) {
 
@@ -116,8 +130,22 @@ public class UserController {
         }
     }
 
+    @DeleteMapping(value = "/booking")
+    public ResponseEntity<?> deleteBooking(@RequestBody Booking booking){
+
+        String url = baseUrlBooking + "/booking";
+        HttpEntity<?> httpEntity = new HttpEntity<>(booking,null);
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {};
+        try{
+            return restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, type );
+        }catch (HttpClientErrorException.NotFound e){
+            return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
+        }
+
+    }
+
     //TODO : Needs to implemented later completely
-    /*@GetMapping(value = "/downloadTicket/{bookingId}")
+    @GetMapping(value = "/downloadTicket/{bookingId}")
     public ResponseEntity<?> downloadTicket(@PathVariable String bookingId){
 
         String url = baseUrlBooking.concat("/download/").concat(bookingId);
@@ -131,7 +159,7 @@ public class UserController {
             return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
         }
 
-    }*/
+    }
 
 
     @ExceptionHandler(Exception.class)
