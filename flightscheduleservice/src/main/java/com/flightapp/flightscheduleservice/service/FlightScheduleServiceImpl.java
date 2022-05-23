@@ -23,6 +23,13 @@ public class FlightScheduleServiceImpl implements FlightScheduleService{
             return scheduleList;
     }
 
+    @Override
+    public FlightSchedule getFlightScheduleById(Long scheduleId) throws FlightScheduleNotFoundException {
+        Optional<FlightSchedule> scheduleOpt = repo.findById(scheduleId);
+        if(scheduleOpt.isPresent())
+            return scheduleOpt.get();
+        else throw new FlightScheduleNotFoundException();
+    }
 
     @Override
     public List<FlightSchedule> getFlightScheduleBySrcAndDest(String src, String dest) throws FlightScheduleNotFoundException {

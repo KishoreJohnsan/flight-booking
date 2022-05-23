@@ -11,6 +11,7 @@ import java.util.List;
 public interface AirlineService {
 
     List<Airline> getAllAirlines() throws AirlineNotFoundException;
+    Airline getAirlineById(Long airlineId) throws AirlineNotFoundException;
     Airline getAirlineByName(String name) throws AirlineNotFoundException;
     boolean saveAirline(Airline airline) throws AirlineAlreadyExistsException;
     boolean updateAirline(Airline airline) throws AirlineNotFoundException;

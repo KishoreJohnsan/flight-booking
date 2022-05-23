@@ -12,6 +12,7 @@ public interface FlightScheduleService {
 
     List<FlightSchedule> getAllFlightSchedules() throws FlightScheduleNotFoundException;
 
+    FlightSchedule getFlightScheduleById(Long scheduleId) throws FlightScheduleNotFoundException;
     List<FlightSchedule> getFlightScheduleBySrcAndDest(String src, String dest) throws FlightScheduleNotFoundException;
 
     List<FlightSchedule> getFlightScheduleByAirlineAndFlightNo(String airline, String flightNo) throws FlightScheduleNotFoundException;

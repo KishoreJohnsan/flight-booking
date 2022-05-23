@@ -6,6 +6,7 @@ import com.flightapp.airlineservice.entity.ErrorResponse;
 import com.flightapp.airlineservice.exception.AirlineAlreadyExistsException;
 import com.flightapp.airlineservice.exception.AirlineNotFoundException;
 import com.flightapp.airlineservice.service.AirlineService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/api/v1/flight/airlines")
 public class AirlineController {
@@ -27,6 +29,11 @@ public class AirlineController {
     @GetMapping(value = "/airline")
     public ResponseEntity<List<Airline>> getAllAirlines() throws AirlineNotFoundException {
         return new ResponseEntity<>(airlineService.getAllAirlines(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/airlineById/{airlineId}")
+    public ResponseEntity<Airline> getAirlineById(@PathVariable Long airlineId) throws AirlineNotFoundException {
+        return new ResponseEntity<>(airlineService.getAirlineById(airlineId), HttpStatus.OK);
     }
 
     //Kafka Producer
@@ -46,6 +53,7 @@ public class AirlineController {
 
     @PostMapping(value = "/airline")
     public ResponseEntity<Boolean> saveAirline(@RequestBody Airline airline) throws AirlineAlreadyExistsException {
+        //log.info(airline.toString());
         return new ResponseEntity<>(airlineService.saveAirline(airline), HttpStatus.CREATED);
     }
 

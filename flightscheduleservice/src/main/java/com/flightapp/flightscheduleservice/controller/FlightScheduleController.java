@@ -23,6 +23,11 @@ public class FlightScheduleController {
         return new ResponseEntity<>(flightScheduleService.getAllFlightSchedules(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/scheduleById/{scheduleId}")
+    public ResponseEntity<FlightSchedule> getFlightScheduleById(@PathVariable Long scheduleId) throws FlightScheduleNotFoundException {
+        return new ResponseEntity<>(flightScheduleService.getFlightScheduleById(scheduleId), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/scheduleByStn/{src}/{dest}")
     public ResponseEntity<List<FlightSchedule>> getFlightScheduleBySrcAndDest(@PathVariable String src, @PathVariable String dest) throws FlightScheduleNotFoundException {
         return new ResponseEntity<>(flightScheduleService.getFlightScheduleBySrcAndDest(src,dest), HttpStatus.OK);

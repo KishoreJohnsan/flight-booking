@@ -19,7 +19,9 @@ public class JwtTokenProvider {
     @Autowired
     Environment env;
 
-    public String generateToken(String username) {
+    public Map<String, Object> generateToken(String username) {
+
+        Map<String, Object> map = new HashMap<>();
 
         String secret = env.getProperty("jwt.secret");
         String validity = env.getProperty("jwt.token.validity");
@@ -28,9 +30,13 @@ public class JwtTokenProvider {
         Date issueDate = new Date();
         Date expiryDate = new Date(issueDate.getTime() + (Long.valueOf(validity) * 1000));
 
-        return Jwts.builder().setClaims(claims)
+        String token =  Jwts.builder().setClaims(claims)
                 .setSubject(username).setIssuedAt(issueDate).setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
+
+        map.put("token", token);
+        map.put("expiry", expiryDate);
+        return map;
     }
 
     public Claims getClaimsFromToken(String token){
