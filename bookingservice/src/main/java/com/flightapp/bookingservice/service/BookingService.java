@@ -4,7 +4,9 @@ import com.flightapp.bookingservice.entity.Booking;
 import com.flightapp.bookingservice.exception.BookingAlreadyExistsException;
 import com.flightapp.bookingservice.exception.BookingNotFoundException;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface BookingService {
 
@@ -15,7 +17,7 @@ public interface BookingService {
 
     boolean cancelBooking(Long bookingId) throws BookingNotFoundException;
     boolean deleteBooking(Long bookingId) throws BookingNotFoundException;
-    boolean generateTicket(Long bookingId) throws BookingNotFoundException;
+    Map<String, Object> generateTicket(Long bookingId) throws BookingNotFoundException, IOException;
 
 
 }

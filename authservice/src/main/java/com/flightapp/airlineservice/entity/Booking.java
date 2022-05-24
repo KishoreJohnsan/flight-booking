@@ -18,4 +18,6 @@ public class Booking {
     private String status;
     private Integer seats;
     private String mealPreference;
+    private String flightNumber;
+    private String flightType;
 }

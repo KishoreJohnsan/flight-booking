@@ -2,12 +2,14 @@ package com.flightapp.bookingservice.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@ToString
 @Entity
 @DynamicUpdate
 public class Booking {
@@ -26,4 +28,6 @@ public class Booking {
     private String status = "BOOKED";
     private Integer seats;
     private String mealPreference;
+    private String flightNumber;
+    private String flightType;
 }

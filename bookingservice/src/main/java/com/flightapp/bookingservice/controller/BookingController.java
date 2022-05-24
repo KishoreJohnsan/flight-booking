@@ -6,11 +6,15 @@ import com.flightapp.bookingservice.exception.BookingNotFoundException;
 import com.flightapp.bookingservice.repo.BookingRepo;
 import com.flightapp.bookingservice.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/v1/flight/bookings")
@@ -55,8 +59,22 @@ public class BookingController {
     }
 
     @GetMapping(value = "/download/{bookingId}")
-    public ResponseEntity<Boolean> downloadTicket(@PathVariable Long bookingId) throws BookingNotFoundException {
-        return new ResponseEntity<>(bookingService.generateTicket(bookingId), HttpStatus.OK);
+    public ResponseEntity<InputStreamResource> downloadTicket(@PathVariable Long bookingId) throws BookingNotFoundException, IOException {
+
+        Map<String, Object> map = bookingService.generateTicket(bookingId);
+        String user = (String) map.get("User");
+        File ticket = (File) map.get("Ticket");
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(ticket));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        String filename = user.concat("_").concat(bookingId.toString()).concat(".pdf");
+        ContentDisposition contentDisposition = ContentDisposition.attachment().filename(filename).build();
+
+        headers.setContentDisposition(contentDisposition);
+
+        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
     }
 
     @ExceptionHandler(BookingNotFoundException.class)
