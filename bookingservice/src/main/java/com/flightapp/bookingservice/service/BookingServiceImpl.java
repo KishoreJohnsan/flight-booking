@@ -5,8 +5,11 @@ import com.flightapp.bookingservice.exception.BookingAlreadyExistsException;
 import com.flightapp.bookingservice.exception.BookingNotFoundException;
 import com.flightapp.bookingservice.repo.BookingRepo;
 import com.itextpdf.barcodes.BarcodeQRCode;
+import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -130,7 +133,7 @@ public class BookingServiceImpl implements BookingService {
         document.setMargins(50, 50, 50, 50);
 
         String logoDest = env.getProperty("logo.path");
-        String airlineLogoDest = env.getProperty("indigo.logo.path");
+        String airlineLogoDest = getLogo(booking.getAirline());
 
         Image logo = new Image(ImageDataFactory.create(logoDest));
         Image airlineLogo = new Image(ImageDataFactory.create(airlineLogoDest));
@@ -141,6 +144,8 @@ public class BookingServiceImpl implements BookingService {
 
         logo.setAutoScale(true);
         airlineLogo.setAutoScale(true);
+
+        PdfFont boldFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
 
         Cell cell1 = new Cell().add(logo);
         cell1.setHorizontalAlignment(HorizontalAlignment.LEFT);
@@ -167,13 +172,13 @@ public class BookingServiceImpl implements BookingService {
 
         document.add(new Paragraph("\n"));
 
-        Cell pnrCellHeading = new Cell().add(new Paragraph("PNR")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
-        Cell fltNoCellHeading = new Cell().add(new Paragraph("Flight Number")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
-        Cell fltTypeHeading = new Cell().add(new Paragraph("Flight Type")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell pnrCellHeading = new Cell().add(new Paragraph("PNR").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell fltNoCellHeading = new Cell().add(new Paragraph("Flight Number").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell fltTypeHeading = new Cell().add(new Paragraph("Flight Type").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
 
         Cell pnrDataCell = new Cell().add(new Paragraph(booking.getBookingId().toString()));
-        Cell fltNoCellData = new Cell();
-        Cell fltTypeData = new Cell();
+        Cell fltNoCellData = new Cell().add(new Paragraph(booking.getFlightNumber()));
+        Cell fltTypeData = new Cell().add(new Paragraph(booking.getFlightType()));
 
         float[] infoTable1Widths = {150F, 150F, 150F};
         Table infoTable1 = pdfTable(infoTable1Widths);
@@ -187,9 +192,9 @@ public class BookingServiceImpl implements BookingService {
         document.add(infoTable1);
         document.add(new Paragraph("\n"));
 
-        Cell sourceHeading = new Cell().add(new Paragraph("Source")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell sourceHeading = new Cell().add(new Paragraph("From").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
         sourceHeading.setTextAlignment(TextAlignment.CENTER);
-        Cell destHeading = new Cell().add(new Paragraph("Destination")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell destHeading = new Cell().add(new Paragraph("To").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
         destHeading.setTextAlignment(TextAlignment.CENTER);
         Cell sourceData = new Cell().add(new Paragraph(booking.getSource()));
         sourceData.setTextAlignment(TextAlignment.CENTER);
@@ -206,14 +211,14 @@ public class BookingServiceImpl implements BookingService {
         document.add(infoTable2);
         document.add(new Paragraph("\n"));
 
-        Cell deptDtHeading = new Cell().add(new Paragraph("Source")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
-        sourceHeading.setTextAlignment(TextAlignment.CENTER);
-        Cell deptTimeHeading = new Cell().add(new Paragraph("Destination")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
-        destHeading.setTextAlignment(TextAlignment.CENTER);
+        Cell deptDtHeading = new Cell().add(new Paragraph("Departure Date").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        deptDtHeading.setTextAlignment(TextAlignment.CENTER);
+        Cell deptTimeHeading = new Cell().add(new Paragraph("Departure Time").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        deptTimeHeading.setTextAlignment(TextAlignment.CENTER);
         Cell deptDtData = new Cell().add(new Paragraph(booking.getDate()));
-        sourceData.setTextAlignment(TextAlignment.CENTER);
+        deptDtData.setTextAlignment(TextAlignment.CENTER);
         Cell deptTimeData = new Cell().add(new Paragraph(booking.getTime()));
-        destData.setTextAlignment(TextAlignment.CENTER);
+        deptTimeData.setTextAlignment(TextAlignment.CENTER);
 
         float[] infoTable3Widths = {150F, 150F};
         Table infoTable3 = pdfTable(infoTable3Widths);
@@ -225,10 +230,10 @@ public class BookingServiceImpl implements BookingService {
         document.add(infoTable3);
         document.add(new Paragraph("\n"));
 
-        Cell seatsHeading = new Cell().add(new Paragraph("Seats")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
-        Cell fareHeading = new Cell().add(new Paragraph("Fare")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
-        Cell prefHeading = new Cell().add(new Paragraph("Meal Preference")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
-        Cell statusHeading = new Cell().add(new Paragraph("Status")).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell seatsHeading = new Cell().add(new Paragraph("Seats").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell fareHeading = new Cell().add(new Paragraph("Fare").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell prefHeading = new Cell().add(new Paragraph("Meal Preference").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
+        Cell statusHeading = new Cell().add(new Paragraph("Status").setFont(boldFont)).setBackgroundColor(ColorConstants.LIGHT_GRAY);
 
         Cell seatsData = new Cell().add(new Paragraph(booking.getSeats().toString())).setTextAlignment(TextAlignment.CENTER);
         Cell fareData = new Cell().add(new Paragraph(booking.getFare().toString())).setTextAlignment(TextAlignment.CENTER);
@@ -262,6 +267,26 @@ public class BookingServiceImpl implements BookingService {
         Table table = new Table(widths);
         table.useAllAvailableWidth();
         return table;
+
+    }
+
+    private String getLogo(String airlineName){
+
+        String indigoLogo = env.getProperty("indigo.logo.path");
+        String airindiaLogo = env.getProperty("airindia.logo.path");
+        String airasiaLogo = env.getProperty("airasia.logo.path");
+        String vistaraLogo = env.getProperty("vistara.logo.path");
+        String spicejetLogo = env.getProperty("spicejet.logo.path");
+        String defaultImage = env.getProperty("noimage.path");
+
+        switch (airlineName){
+            case "AIRINDIA" : return airindiaLogo;
+            case "AIRASIA" : return airasiaLogo;
+            case "VISTARA" : return vistaraLogo;
+            case "SPICEJET" : return spicejetLogo;
+            case "INDIGO" : return indigoLogo;
+            default: return defaultImage;
+        }
 
     }
 

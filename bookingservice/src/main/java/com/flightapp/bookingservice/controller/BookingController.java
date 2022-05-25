@@ -67,11 +67,10 @@ public class BookingController {
         InputStreamResource resource = new InputStreamResource(new FileInputStream(ticket));
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 
         String filename = user.concat("_").concat(bookingId.toString()).concat(".pdf");
         ContentDisposition contentDisposition = ContentDisposition.attachment().filename(filename).build();
-
         headers.setContentDisposition(contentDisposition);
 
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);

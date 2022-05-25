@@ -9,14 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -144,9 +144,8 @@ public class UserController {
 
     }
 
-    //TODO : Needs to implemented later completely
-    @GetMapping(value = "/downloadTicket/{bookingId}")
-    public ResponseEntity<?> downloadTicket(@PathVariable String bookingId){
+    @RequestMapping(value = "/downloadTicket/{bookingId}", produces = MediaType.APPLICATION_PDF_VALUE, method = RequestMethod.GET)
+    public ResponseEntity<?> downloadTicket(@PathVariable String bookingId) throws Exception {
 
         String url = baseUrlBooking.concat("/download/").concat(bookingId);
         HttpEntity<?> httpEntity = new HttpEntity<>(null, null);
@@ -154,17 +153,18 @@ public class UserController {
         };
 
         try{
-            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, type);
+            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, byte[].class);
         }catch (HttpClientErrorException e){
             return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
+            //throw new Exception();
         }
 
     }
 
 
-    @ExceptionHandler(Exception.class)
+   /* @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException() {
         return new ResponseEntity<>(new ErrorResponse("Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    }*/
 
 }
