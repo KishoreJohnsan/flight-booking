@@ -1,0 +1,1505 @@
+{
+	"info": {
+		"_postman_id": "083f332c-a9f2-4384-ae3d-27a25d85c20a",
+		"name": "flight-booking AWS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Airline",
+			"item": [
+				{
+					"name": "Airline",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/airlines/airline",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"airlines",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airline",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airlineName\" : \"Air India\",\r\n    \"address\" : \"Delhi\",\r\n    \"contact\" : \"64132132\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/airlines/airline",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"airlines",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airline",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airlineId\" : \"23\",\r\n    \"airlineName\" : \"Air India\",\r\n    \"address\" : \"Delhi\",\r\n    \"contact\" : \"123467\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/airlines/airline",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"airlines",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airline",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airlineId\" : \"23\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/airlines/airline",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"airlines",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flight Schedule",
+			"item": [
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/schedules/schedule",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"schedules",
+								"schedule"
+							]
+						},
+						"description": "Flight Schedule"
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\" : \"1234\",\r\n    \"airline\" : \"Air India\",\r\n    \"source\" : \"Delhi\",\r\n    \"destination\" : \"Mumbai\",\r\n    \"flightType\" : \"A350\",\r\n    \"time\" : \"0900\",\r\n    \"date\" : \"12052022\",\r\n    \"fare\" : 3300\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/schedules/schedule",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"schedules",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"scheduleId\" : \"23\",\r\n    \"flightNumber\" : \"1234\",\r\n    \"airline\" : \"Air India\",\r\n    \"source\" : \"Delhi\",\r\n    \"destination\" : \"Mumbai\",\r\n    \"flightType\" : \"A350\",\r\n    \"time\" : \"0930\",\r\n    \"date\" : \"12052022\",\r\n    \"fare\" : 3350\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/schedules/schedule",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"schedules",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"scheduleId\" : \"23\"\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/schedules/schedule",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"schedules",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule by src and dest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/schedules/scheduleByStn/Delhi/Mumbai",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"schedules",
+								"scheduleByStn",
+								"Delhi",
+								"Mumbai"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule by airline and flt no",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/schedules/scheduleByFlt/Air India/1234",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"schedules",
+								"scheduleByFlt",
+								"Air India",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Booking by Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/bookings/booking/21",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"bookings",
+								"booking",
+								"21"
+							]
+						},
+						"description": "Flight Schedule"
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"source\":\"Chennai\",\r\n     \"destination\":\"Kolkata\",\r\n     \"airline\":\"Air India\",\r\n     \"date\":\"15052022\",\r\n     \"time\":\"1000\",\r\n     \"fare\":\"9600\",\r\n     \"user\":\"user\",     \r\n     \"seats\":\"3\",\r\n     \"mealPreference\":\"Veg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/bookings/booking",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"bookings",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookingId\" : \"2\",\r\n     \"source\":\"Chennai\",\r\n     \"destination\":\"Kolkata\",\r\n     \"airline\":\"Air India\",\r\n     \"date\":\"15052022\",\r\n     \"time\":\"1000\",\r\n     \"fare\":\"9600\",\r\n     \"user\":\"user\",     \r\n     \"seats\":\"3\",\r\n     \"status\":\"CANCELLED\",\r\n     \"mealPreference\":\"Veg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/bookings/booking",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"bookings",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookingId\" : \"2\"\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/bookings/booking",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"bookings",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking by User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/bookings/booking/user/user",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"bookings",
+								"booking",
+								"user",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/flight/bookings/booking/cancel/23",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"flight",
+								"bookings",
+								"booking",
+								"cancel",
+								"23"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Open API",
+			"item": [
+				{
+					"name": "Service Docs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.218.47.216:3050/v3/api-docs",
+							"protocol": "http",
+							"host": [
+								"34",
+								"218",
+								"47",
+								"216"
+							],
+							"port": "3050",
+							"path": [
+								"v3",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airline Docs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://54.191.207.22:3060/v3/api-docs",
+							"protocol": "http",
+							"host": [
+								"54",
+								"191",
+								"207",
+								"22"
+							],
+							"port": "3060",
+							"path": [
+								"v3",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule Docs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://35.89.151.76:3070/v3/api-docs",
+							"protocol": "http",
+							"host": [
+								"35",
+								"89",
+								"151",
+								"76"
+							],
+							"port": "3070",
+							"path": [
+								"v3",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking Docs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://52.36.86.37:3080/v3/api-docs",
+							"protocol": "http",
+							"host": [
+								"52",
+								"36",
+								"86",
+								"37"
+							],
+							"port": "3080",
+							"path": [
+								"v3",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Airline",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/airline",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"scheduleId\": 15,\r\n        \"flightNumber\": \"1234\",\r\n        \"airline\": \"Air India\",\r\n        \"source\": \"Delhi\",\r\n        \"destination\": \"Mumbai\",\r\n        \"flightType\": \"A350\",\r\n        \"time\": \"0900\",\r\n        \"date\": \"02062022\",\r\n        \"fare\": 3300.0\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/schedule",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/schedule",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Authentication",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/authenticate",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Home",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3MjE3OCwiaWF0IjoxNjUzNTY4NTc4fQ.8phTZgAXgIWlGc4VISgYVPT5lSt1D6Yu78flpCMCIIkTTLSVoJzsDjE99TRW0q89-xSqCwXCX7uhNQ34KeRuZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airline",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3MjE3OCwiaWF0IjoxNjUzNTY4NTc4fQ.8phTZgAXgIWlGc4VISgYVPT5lSt1D6Yu78flpCMCIIkTTLSVoJzsDjE99TRW0q89-xSqCwXCX7uhNQ34KeRuZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airlineName\" : \"Jet Airways\",\r\n    \"address\" : \"Delhi\",\r\n    \"contact\" : \"231\",\r\n    \"isActive\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/airline",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airline",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airlineId\":22,\r\n    \"isActive\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/airline",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airline",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airlineId\":22,\r\n    \"isActive\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/airline",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"scheduleId\": 15,\r\n        \"flightNumber\": \"1234\",\r\n        \"airline\": \"Air India\",\r\n        \"source\": \"Delhi\",\r\n        \"destination\": \"Mumbai\",\r\n        \"flightType\": \"A350\",\r\n        \"time\": \"0900\",\r\n        \"date\": \"02062022\",\r\n        \"fare\": 3300.0\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/schedule",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n        \"flightNumber\": \"1234\",\r\n        \"airline\": \"Air India\",\r\n        \"source\": \"Delhi\",\r\n        \"destination\": \"Mumbai\",\r\n        \"flightType\": \"A350\",\r\n        \"time\": \"0900\",\r\n        \"date\": \"02062022\",\r\n        \"fare\": 3300.0\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/schedule",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airline by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/airlineById/17",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"airlineById",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flight Schedule by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY1MzU3NTk2MywiaWF0IjoxNjUzNTcyMzYzfQ.AoTJoV96Zr8Y7bGPhFH3RdyzY-GXbvFcW3llj7Y2jiLZcUa3rLb1QnOs0Y1gz_zONQGr4pQPJ9W07crtXMXcsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/admin/scheduleById/10",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"admin",
+								"scheduleById",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Authentication",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"skj\",\r\n    \"password\":\"skj\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/authenticate",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJza2oiLCJleHAiOjE2NTM1NzcwNDcsImlhdCI6MTY1MzU3MzQ0N30.X2SDMhXpHsgyTe1FJQWSGqoFFlMEDUC6k4W0IXwyYGNquwLSPpRgL8laDPnMnu4-dPQiDuw3Rk7PPzaexl3eMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/user/scheduleById/11",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								"scheduleById",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Home",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJza2oiLCJleHAiOjE2NTM1NzcwNDcsImlhdCI6MTY1MzU3MzQ0N30.X2SDMhXpHsgyTe1FJQWSGqoFFlMEDUC6k4W0IXwyYGNquwLSPpRgL8laDPnMnu4-dPQiDuw3Rk7PPzaexl3eMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/user/",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule by src and dest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJza2oiLCJleHAiOjE2NTM1NzcwNDcsImlhdCI6MTY1MzU3MzQ0N30.X2SDMhXpHsgyTe1FJQWSGqoFFlMEDUC6k4W0IXwyYGNquwLSPpRgL8laDPnMnu4-dPQiDuw3Rk7PPzaexl3eMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/user/schedule/Delhi/Mumbai",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								"schedule",
+								"Delhi",
+								"Mumbai"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking by User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJza2oiLCJleHAiOjE2NTM1NzcwNDcsImlhdCI6MTY1MzU3MzQ0N30.X2SDMhXpHsgyTe1FJQWSGqoFFlMEDUC6k4W0IXwyYGNquwLSPpRgL8laDPnMnu4-dPQiDuw3Rk7PPzaexl3eMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/user/bookingByUser/skj",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								"bookingByUser",
+								"skj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJza2oiLCJleHAiOjE2NTM1NzcwNDcsImlhdCI6MTY1MzU3MzQ0N30.X2SDMhXpHsgyTe1FJQWSGqoFFlMEDUC6k4W0IXwyYGNquwLSPpRgL8laDPnMnu4-dPQiDuw3Rk7PPzaexl3eMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/user/bookingById/21",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								"bookingById",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJza2oiLCJleHAiOjE2NTM1NzI3NzgsImlhdCI6MTY1MzU2OTE3OH0.QMDon6gkY01kYiBiW7ePy3ruL70-3Y0kzv5JznYPQYJ5XrxfUHcYunePlyjUxiuGNOE3tL8dVhTltz2vGxT6mw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/user/cancelBooking/23",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								"cancelBooking",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user2\",\r\n    \"password\":\"user2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/register",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJza2oiLCJleHAiOjE2NTM1NzI3NzgsImlhdCI6MTY1MzU2OTE3OH0.QMDon6gkY01kYiBiW7ePy3ruL70-3Y0kzv5JznYPQYJ5XrxfUHcYunePlyjUxiuGNOE3tL8dVhTltz2vGxT6mw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"source\":\"Chennai\",\r\n     \"destination\":\"Kolkata\",\r\n     \"airline\":\"Air India\",\r\n     \"date\":\"15052022\",\r\n     \"time\":\"1000\",\r\n     \"fare\":\"6300\",\r\n     \"user\":\"user2\",     \r\n     \"seats\":\"2\",\r\n     \"mealPreference\":\"Veg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.191.252:3000/api/v1/service/user/booking",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"191",
+								"252"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"service",
+								"user",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
