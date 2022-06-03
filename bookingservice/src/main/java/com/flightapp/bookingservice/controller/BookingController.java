@@ -6,9 +6,13 @@ import com.flightapp.bookingservice.exception.BookingNotFoundException;
 import com.flightapp.bookingservice.repo.BookingRepo;
 import com.flightapp.bookingservice.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,6 +30,11 @@ public class BookingController {
     @Autowired
     private BookingRepo repo;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private Environment env;
 
     @GetMapping(value = "/booking/user/{user}")
     public ResponseEntity<List<Booking>> getAllBookingByUser(@PathVariable String user) throws BookingNotFoundException {
@@ -76,6 +85,25 @@ public class BookingController {
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/booking/email/{bookingId}")
+    public ResponseEntity<?> sendEmailNotification(@PathVariable Long bookingId) throws BookingNotFoundException{
+
+        Booking booking = bookingService.getBookingById(bookingId);
+
+        String url = env.getProperty("aws.lambda.url");
+        HttpEntity<?> httpEntity = new HttpEntity<>(booking, null);
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {
+        };
+
+        try {
+            return restTemplate.exchange(url, HttpMethod.POST, httpEntity, type);
+        } catch (HttpClientErrorException.NotFound e) {
+            return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
+        }
+
+        //return new ResponseEntity<>("Mail has been triggered", HttpStatus.ACCEPTED);
+    }
+
     @ExceptionHandler(BookingNotFoundException.class)
     public ResponseEntity<?> handleBookingNotFound(){
         return new ResponseEntity<>("Booking Not Found", HttpStatus.NOT_FOUND);
@@ -86,8 +114,8 @@ public class BookingController {
         return new ResponseEntity<>("Booking already present", HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(Exception.class)
+   /* @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleException() {
         return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    }*/
 }

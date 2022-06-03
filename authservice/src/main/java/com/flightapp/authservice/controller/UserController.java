@@ -161,6 +161,20 @@ public class UserController {
 
     }
 
+    @GetMapping(value = "/sendEmail/{bookingId}")
+    public ResponseEntity<?> sendEmailNotification(@PathVariable String bookingId){
+        String url = baseUrlBooking.concat("/booking/email/").concat(bookingId);
+        HttpEntity<?> httpEntity = new HttpEntity<>(null, null);
+        ParameterizedTypeReference<?> type = new ParameterizedTypeReference<>() {
+        };
+
+        try {
+            return restTemplate.exchange(url, HttpMethod.GET, httpEntity, type);
+        } catch (HttpClientErrorException.NotFound e) {
+            return new ResponseEntity<>(new ErrorResponse(e.getResponseBodyAsString()), HttpStatus.NOT_FOUND);
+        }
+    }
+
 
    /* @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException() {
