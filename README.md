@@ -51,6 +51,8 @@ All paths below are under `http://localhost:3000/api/v1/service`.
 
 Send the token as `Authorization: Bearer <token>`.
 
+Registration always creates a `user`. To get an admin, insert a row in the `userdetails` database with `role` set to `admin` and a BCrypt-hashed password.
+
 ## Email and Kafka
 
 - **Email:** `bookingservice` posts the booking to the Lambda URL in `aws.lambda.url`. The handler in `emailservice` builds the message and sends it over SMTP. The code uses Mailtrap's sandbox, so mail lands in a Mailtrap inbox and not at real addresses.
